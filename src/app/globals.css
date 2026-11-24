@@ -160,7 +160,7 @@ section[id],
 .js [data-reveal="scale"] {
   transform: scale(0.96);
 }
-.js [data-reveal].is-in {
+.js [data-reveal][data-in] {
   opacity: 1;
   transform: none;
 }
