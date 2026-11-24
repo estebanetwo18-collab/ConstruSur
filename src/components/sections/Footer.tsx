@@ -57,10 +57,10 @@ export function Footer() {
           {links.map((g) => (
             <nav key={g.titulo} aria-label={g.titulo} className="lg:col-span-2">
               <h3 className="text-xs font-semibold uppercase tracking-[0.16em] text-terra">{g.titulo}</h3>
-              <ul className="mt-4 space-y-2.5 text-sm">
+              <ul className="mt-3 space-y-1 text-sm">
                 {g.items.map((l) => (
                   <li key={l.href}>
-                    <Link href={l.href} className="text-cream/80 transition-colors hover:text-terra">
+                    <Link prefetch={false} href={l.href} className="inline-block py-1 text-cream/80 transition-colors hover:text-terra">
                       {l.label}
                     </Link>
                   </li>
@@ -93,9 +93,11 @@ export function Footer() {
           <p>Construcción residencial · Gran Área Metropolitana</p>
         </div>
       </div>
-      <p aria-hidden className="watermark pointer-events-none absolute -bottom-[0.12em] left-1/2 -translate-x-1/2 text-[24vw] text-cream/[0.045]">
-        ConstruSur
-      </p>
+      <svg aria-hidden viewBox="0 0 1000 200" className="pointer-events-none absolute -bottom-[3vw] left-1/2 w-[110%] -translate-x-1/2" preserveAspectRatio="xMidYMax meet">
+        <text x="500" y="185" textAnchor="middle" className="watermark" fontSize="236" fill="rgba(244,240,232,.045)">
+          ConstruSur
+        </text>
+      </svg>
     </footer>
   );
 }

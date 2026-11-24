@@ -33,7 +33,7 @@ export function Services() {
               const href = s.linea ? `/cotizador?linea=${s.linea}` : "/#contacto";
               return (
                 <li key={s.id} className="w-[78%] shrink-0 snap-start sm:w-[46%] lg:w-[300px]" data-reveal style={{ "--i": i } as React.CSSProperties}>
-                  <Link href={href} className="zoom-group lift group block h-full rounded-[20px] bg-cream p-2.5">
+                  <Link prefetch={false} href={href} className="zoom-group lift group block h-full rounded-[20px] bg-cream p-2.5">
                     <div className="zoom-img relative aspect-[4/4.4] overflow-hidden rounded-[14px]">
                       <Image src={s.img} alt="" fill sizes="(min-width: 1024px) 300px, (min-width: 640px) 46vw, 78vw" className="object-cover" />
                       <span className="absolute left-3 top-3 rounded-full bg-paper/90 px-3 py-1 text-xs font-semibold backdrop-blur">

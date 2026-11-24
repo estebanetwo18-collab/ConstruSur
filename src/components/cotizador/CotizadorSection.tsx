@@ -24,12 +24,13 @@ export function CotizadorSection({ asPage = false }: { asPage?: boolean }) {
           titulo={["Calcule su inversión", "en segundos", "."]}
           intro="Un rango referencial con desglose de construcción, diseño, permisos e IVA. Sin registrarse para ver el resultado."
           className="max-w-3xl"
+          immediate={asPage}
         />
         <div className="mt-8 empty:hidden">
           <DevBanner />
         </div>
-        <div className="mt-10 sm:mt-14" data-reveal>
-          <Cotizador pricing={pricing} demo={demo} hitos={hitos} />
+        <div className={`mt-10 sm:mt-14 ${asPage ? "hero-in" : ""}`} {...(asPage ? { style: { "--i": 3 } as React.CSSProperties } : { "data-reveal": true })}>
+          <Cotizador pricing={pricing} demo={demo} hitos={hitos} nivel={asPage ? 2 : 3} />
         </div>
       </div>
     </section>

@@ -63,7 +63,7 @@ export function Button({
     );
   }
   return (
-    <Link href={href} className={cls} onClick={onClick} aria-label={ariaLabel}>
+    <Link href={href} prefetch={href.includes("#") || href.includes("?") ? false : undefined} className={cls} onClick={onClick} aria-label={ariaLabel}>
       {content}
     </Link>
   );

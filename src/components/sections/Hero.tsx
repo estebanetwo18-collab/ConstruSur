@@ -10,13 +10,13 @@ const d = (i: number) => ({ "--i": i }) as React.CSSProperties;
 
 export function Hero() {
   // Dirección de arte: poster horizontal en desktop, vertical en móvil.
-  const common = { alt: "", sizes: "100vw", quality: 70 };
+  // En móvil la imagen vertical cubre la altura de la pantalla (~160vw de ancho).
   const {
     props: { srcSet: desktop },
-  } = getImageProps({ ...common, src: "/img/hero/hero-desktop.webp", width: 1600, height: 1000 });
+  } = getImageProps({ alt: "", sizes: "100vw", quality: 70, src: "/img/hero/hero-desktop.webp", width: 1600, height: 1000 });
   const {
     props: { srcSet: mobile, ...rest },
-  } = getImageProps({ ...common, src: "/img/hero/hero-mobile.webp", width: 720, height: 964, loading: "eager" });
+  } = getImageProps({ alt: "", sizes: "160vw", quality: 60, src: "/img/hero/hero-mobile.webp", width: 1000, height: 1338, loading: "eager" });
 
   const social = [
     { label: "WhatsApp", url: waLink(MENSAJE_GENERAL), Icon: WhatsAppIcon },
@@ -28,8 +28,8 @@ export function Hero() {
     <section className="on-dark relative z-10 overflow-hidden rounded-b-[32px] bg-ink text-cream sm:rounded-b-[56px]" aria-labelledby="hero-titulo">
       <div className="absolute inset-0">
         <picture>
-          <source media="(min-width: 768px)" srcSet={desktop} />
-          <source srcSet={mobile} />
+          <source media="(min-width: 768px)" srcSet={desktop} sizes="100vw" />
+          <source srcSet={mobile} sizes="160vw" />
           <img {...rest} alt="" fetchPriority="high" className="absolute inset-0 size-full object-cover" />
         </picture>
         <HeroVideo />
@@ -62,7 +62,7 @@ export function Hero() {
         <p className="eyebrow hero-in self-start rounded-full bg-ink/55 py-1.5 pl-3 pr-4 !text-cream backdrop-blur-sm before:!bg-terra" style={d(0)}>
           {hero.eyebrow}
         </p>
-        <h1 id="hero-titulo" className="font-display hero-in mt-5 max-w-4xl text-[3.4rem] font-medium leading-[0.98] sm:text-7xl lg:text-[6.5rem]" style={d(1)}>
+        <h1 id="hero-titulo" className="font-display hero-title-in mt-5 max-w-4xl text-[3.4rem] font-medium leading-[0.98] sm:text-7xl lg:text-[6.5rem]">
           {hero.titulo[0]} <span className="kw">{hero.titulo[1]}</span>
           {hero.titulo[2]}
         </h1>
@@ -81,7 +81,7 @@ export function Hero() {
             <div className="flex -space-x-3">
               {["essential-fachada-frontal", "prestige-exterior-piscina", "prime-terraza"].map((f) => (
                 <span key={f} className="relative size-10 overflow-hidden rounded-full ring-2 ring-ink">
-                  <Image src={`/img/proyectos/${f}.webp`} alt="" fill sizes="40px" className="object-cover" />
+                  <Image src={`/img/thumbs/${f}.webp`} alt="" width={40} height={40} className="size-10 object-cover" />
                 </span>
               ))}
             </div>

@@ -45,7 +45,7 @@ export function Header() {
             : "h-14 bg-cream/85 px-3 text-ink shadow-[0_8px_30px_-12px_rgba(27,24,18,.25)] ring-1 ring-ink/5 backdrop-blur-xl sm:h-16 sm:px-4"
         }`}
       >
-        <Link href="/" aria-label="ConstruSur, inicio" className="rounded-full px-1" onClick={() => setOpen(false)}>
+        <Link prefetch={false} href="/" aria-label="ConstruSur, inicio" className="rounded-full px-1" onClick={() => setOpen(false)}>
           <Logo dark={overHero} className={scrolled ? "text-[1.3rem]" : ""} />
         </Link>
 
@@ -53,7 +53,7 @@ export function Header() {
           <ul className="flex items-center gap-1">
             {nav.map((l) => (
               <li key={l.href}>
-                <Link
+                <Link prefetch={false}
                   href={href(l.href)}
                   className={`rounded-full px-4 py-2 text-[0.92rem] font-medium transition-colors ${overHero ? "hover:bg-cream/10" : "hover:bg-ink/5"}`}
                 >
@@ -99,7 +99,7 @@ export function Header() {
                 className="transition-all duration-700 ease-brand"
                 style={{ transitionDelay: open ? `${i * 60 + 100}ms` : "0ms", opacity: open ? 1 : 0, transform: open ? "none" : "translateY(20px)" }}
               >
-                <Link
+                <Link prefetch={false}
                   href={href(l.href)}
                   onClick={() => setOpen(false)}
                   className="flex items-baseline gap-4 border-b border-cream/10 py-4 font-display text-4xl font-medium"

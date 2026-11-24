@@ -21,7 +21,7 @@ export const equipo = {
   ],
   /** Fotos de obra que acompañan al equipo (temporales). */
   obra: [
-    { src: "/img/obra/ingenieros.webp", alt: "Supervisión técnica en obra" },
+    { src: "/img/obra/carpintero.webp", alt: "Trabajo de carpintería en obra" },
     { src: "/img/obra/varillas.webp", alt: "Armado de acero de refuerzo" },
     { src: "/img/obra/electricista.webp", alt: "Instalación eléctrica" },
   ],

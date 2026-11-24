@@ -19,6 +19,8 @@ type Props = {
   pricing: Pricing | null;
   demo: boolean;
   hitos: { label: string; detalle: string; pct: number | null }[];
+  /** Nivel de los subtítulos internos (2 en /cotizador, donde el título es h1). */
+  nivel?: 2 | 3;
 };
 
 const LINEA_ICON: Record<Linea, string> = { essential: "I", prestige: "II", prime: "III" };
@@ -36,7 +38,8 @@ function Paso({ n, titulo, children, htmlFor }: { n: number; titulo: string; chi
   );
 }
 
-export function Cotizador({ pricing, demo, hitos }: Props) {
+export function Cotizador({ pricing, demo, hitos, nivel = 3 }: Props) {
+  const H = nivel === 2 ? "h2" : "h3";
   const [m2Text, setM2Text] = useState(String(C.area.inicial));
   const [tipo, setTipo] = useState<TipoObra>("nueva");
   const [linea, setLinea] = useState<Linea>("prestige");
@@ -320,7 +323,7 @@ export function Cotizador({ pricing, demo, hitos }: Props) {
         <div id="cot-desglose" className={`grid transition-[grid-template-rows] duration-700 ease-brand ${desglose ? "mt-6 grid-rows-[1fr]" : "grid-rows-[0fr]"}`}>
           <div className="overflow-hidden" inert={!desglose}>
             <div className="card p-5 sm:p-8">
-              <h3 className="font-display text-2xl font-medium">Desglose de la estimación</h3>
+              <H className="font-display text-2xl font-medium">Desglose de la estimación</H>
               <p className="mt-1 text-sm text-muted">
                 {resultado.input.m2} m² · {nombreTipo} · Línea {nombreLinea} · {moneda === "CRC" ? "Colones" : "Dólares"}
               </p>
@@ -349,6 +352,7 @@ export function Cotizador({ pricing, demo, hitos }: Props) {
           nombreTipo={nombreTipo}
           nombreLinea={nombreLinea}
           demo={demo}
+          nivel={nivel}
         />
       </div>
 

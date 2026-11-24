@@ -36,13 +36,16 @@ export function LeadForm({
   nombreTipo,
   nombreLinea,
   demo,
+  nivel = 3,
 }: {
   cotizacion: { m2: number; tipo: TipoObra; linea: Linea; moneda: Moneda };
   resumen: { min: number; max: number } | null;
   nombreTipo: string;
   nombreLinea: string;
   demo: boolean;
+  nivel?: 2 | 3;
 }) {
+  const H = nivel === 2 ? "h2" : "h3";
   const router = useRouter();
   const [enviando, setEnviando] = useState(false);
   const [errores, setErrores] = useState<Record<string, string>>({});
@@ -111,9 +114,9 @@ export function LeadForm({
       <div className="grid gap-8 lg:grid-cols-12">
         <div className="lg:col-span-4">
           <p className="eyebrow">Siguiente paso</p>
-          <h3 id="lead-titulo" className="font-display mt-3 text-3xl font-medium leading-tight sm:text-4xl">
+          <H id="lead-titulo" className="font-display mt-3 text-3xl font-medium leading-tight sm:text-4xl">
             Reciba su cotización y <span className="kw">conversemos</span>.
-          </h3>
+          </H>
           <p className="mt-3 text-[0.95rem] leading-relaxed text-ink-soft">
             Le enviamos el resumen a su correo y uno de los socios le contacta para revisar su proyecto. Sin costo y sin compromiso.
           </p>

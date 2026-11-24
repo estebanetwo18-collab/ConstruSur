@@ -77,7 +77,8 @@ export function Testimonials() {
                 aria-label={testimonios.video.titulo}
               />
             ) : (
-              <button type="button" onClick={() => setPlay(true)} className="group absolute inset-0 block size-full" aria-label={`Reproducir: ${testimonios.video.titulo}`}>
+              <button type="button" onClick={() => setPlay(true)} className="group absolute inset-0 block size-full">
+                <span className="sr-only">Reproducir: </span>
                 <Image src={testimonios.video.poster} alt="" fill sizes="340px" className="object-cover transition-transform duration-1000 ease-brand group-hover:scale-105" />
                 <span className="absolute inset-0 bg-gradient-to-t from-ink/80 via-transparent to-transparent" />
                 <span className="absolute left-1/2 top-1/2 grid size-20 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-terra text-ink shadow-xl transition-transform duration-500 ease-brand group-hover:scale-110">

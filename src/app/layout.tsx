@@ -9,16 +9,19 @@ import { BusinessJsonLd } from "@/components/JsonLd";
 
 const fraunces = Fraunces({
   subsets: ["latin"],
+  weight: ["500", "600"],
   style: ["normal", "italic"],
-  axes: ["opsz"],
   variable: "--font-fraunces",
   display: "swap",
 });
 
 const inter = Inter({
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
   variable: "--font-inter",
   display: "swap",
+  // Solo se precarga Fraunces (titular del hero); Inter usa fallback ajustado mientras carga.
+  preload: false,
 });
 
 export const metadata: Metadata = {

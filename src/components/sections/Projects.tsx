@@ -5,8 +5,10 @@ import Image from "next/image";
 import { MapPin, Images } from "lucide-react";
 import { SectionTitle } from "@/components/ui/SectionTitle";
 import { CircleButton, Button } from "@/components/ui/Button";
-import { Lightbox } from "@/components/ui/Lightbox";
+import dynamic from "next/dynamic";
 import { proyectos, type Proyecto } from "@/data/proyectos";
+
+const Lightbox = dynamic(() => import("@/components/ui/Lightbox").then((m) => m.Lightbox), { ssr: false });
 
 const tilts = ["-2deg", "2deg", "2deg", "-2deg"];
 
@@ -26,7 +28,7 @@ export function Projects() {
                   type="button"
                   onClick={() => setAbierto(p)}
                   className="zoom-img relative block aspect-[4/3] w-full overflow-hidden rounded-[14px]"
-                  aria-label={`Abrir galería: ${p.nombre}`}
+                  aria-label={`${p.fotos.length} fotos: abrir galería de ${p.nombre}`}
                 >
                   <Image src={p.portada} alt={p.fotos[0]?.alt ?? p.nombre} fill sizes="(min-width: 768px) 540px, 100vw" className="object-cover" />
                   <span className="absolute left-3 top-3 flex items-center gap-1.5 rounded-full bg-ink/75 px-3 py-1 text-xs font-semibold text-cream backdrop-blur">
@@ -70,7 +72,7 @@ export function Projects() {
           </li>
         </ul>
       </div>
-      <Lightbox key={abierto?.id ?? "cerrado"} proyecto={abierto} onClose={() => setAbierto(null)} />
+      {abierto && <Lightbox key={abierto.id} proyecto={abierto} onClose={() => setAbierto(null)} />}
     </section>
   );
 }

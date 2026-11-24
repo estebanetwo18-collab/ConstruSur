@@ -26,11 +26,9 @@ export function About() {
               ["Misión", nosotros.mision],
               ["Visión", nosotros.vision],
             ].map(([k, v], i) => (
-              <div key={k} className="flex gap-4 border-l-2 border-terra pl-4" data-reveal style={d(3 + i)}>
-                <div>
-                  <dt className="text-xs font-semibold uppercase tracking-[0.16em] text-terra-ink">{k}</dt>
-                  <dd className="mt-1 leading-relaxed text-ink">{v}</dd>
-                </div>
+              <div key={k} className="border-l-2 border-terra pl-4" data-reveal style={d(3 + i)}>
+                <dt className="text-xs font-semibold uppercase tracking-[0.16em] text-terra-ink">{k}</dt>
+                <dd className="mt-1 leading-relaxed text-ink">{v}</dd>
               </div>
             ))}
           </dl>

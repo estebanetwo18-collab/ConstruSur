@@ -8,9 +8,15 @@ type Props = {
   className?: string;
   size?: "lg" | "xl";
   id?: string;
+  /** Sobre el pliegue: animación CSS inmediata (no espera al JS, no retrasa el LCP). */
+  immediate?: boolean;
 };
 
-export function SectionTitle({ eyebrow, titulo, intro, align = "left", as: Tag = "h2", className = "", size = "lg", id }: Props) {
+export function SectionTitle({ eyebrow, titulo, intro, align = "left", as: Tag = "h2", className = "", size = "lg", id, immediate = false }: Props) {
+  const anim = (i: number) =>
+    immediate
+      ? { className: "hero-in", style: { "--i": i } as React.CSSProperties }
+      : { className: "", "data-reveal": true, style: { "--i": i } as React.CSSProperties };
   const center = align === "center";
   const sz =
     size === "xl"
@@ -19,20 +25,16 @@ export function SectionTitle({ eyebrow, titulo, intro, align = "left", as: Tag =
   return (
     <div className={`${center ? "mx-auto text-center" : ""} ${className}`}>
       {eyebrow && (
-        <p className={`eyebrow ${center ? "justify-center" : ""}`} data-reveal>
+        <p {...anim(0)} className={`eyebrow ${anim(0).className} ${center ? "justify-center" : ""}`}>
           {eyebrow}
         </p>
       )}
-      <Tag id={id} className={`font-display mt-4 font-medium text-balance ${sz}`} data-reveal style={{ "--i": 1 } as React.CSSProperties}>
+      <Tag id={id} {...anim(1)} className={`font-display mt-4 font-medium text-balance ${anim(1).className} ${sz}`}>
         {titulo[0]} <span className="kw">{titulo[1]}</span>
         {titulo[2]}
       </Tag>
       {intro && (
-        <p
-          className={`mt-5 max-w-xl text-[1.05rem] leading-relaxed text-ink-soft text-pretty ${center ? "mx-auto" : ""}`}
-          data-reveal
-          style={{ "--i": 2 } as React.CSSProperties}
-        >
+        <p {...anim(2)} className={`mt-5 max-w-xl text-[1.05rem] leading-relaxed text-ink-soft text-pretty ${anim(2).className} ${center ? "mx-auto" : ""}`}>
           {intro}
         </p>
       )}
