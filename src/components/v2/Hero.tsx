@@ -1,6 +1,7 @@
 import { getImageProps } from "next/image";
 import { Users, ClipboardList, Building2, MapPinned } from "lucide-react";
 import { BlueprintLines } from "@/components/ui/BlueprintLines";
+import { HeroVideo } from "@/components/sections/HeroVideo";
 import { v2Credenciales, v2Hero } from "@/data/v2";
 import { ArrowLink, BtnDiag } from "./Buttons";
 import { MONO_PATHS } from "./Brand";
@@ -27,6 +28,8 @@ export function V2Hero() {
             <img {...rest} alt="" fetchPriority="high" className="v2-kenburns absolute inset-0 size-full object-cover" />
           </picture>
         </div>
+        {/* Video de la obra (el mismo de la versión A): carga después de la imagen y termina en la casa terminada */}
+        <HeroVideo />
         {/* Overlay negro → marrón */}
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(18,16,16,.92)_0%,rgba(18,16,16,.7)_45%,rgba(74,52,38,.55)_100%)]" />
         <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(18,16,16,.9)_0%,transparent_45%)]" />
