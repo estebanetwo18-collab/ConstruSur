@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import { Motion } from "@/components/ui/Motion";
-import { CotizadorSection } from "@/components/cotizador/CotizadorSection";
-import { Faq } from "@/components/sections/Faq";
-import { Footer } from "@/components/sections/Footer";
-import { FaqJsonLd } from "@/components/JsonLd";
+import { V2CotizadorSection } from "@/components/v2/cotizador/V2CotizadorSection";
+import { V2Contact } from "@/components/v2/Contact";
+import { V2Footer } from "@/components/v2/Footer";
 
 export const metadata: Metadata = {
   title: "Cotizador de construcción en línea — Costa Rica",
@@ -20,10 +19,9 @@ export const metadata: Metadata = {
 export default function CotizadorPage() {
   return (
     <>
-      <CotizadorSection asPage />
-      <Faq />
-      <Footer />
-      <FaqJsonLd />
+      <V2CotizadorSection asPage />
+      <V2Contact />
+      <V2Footer />
       <Motion />
     </>
   );

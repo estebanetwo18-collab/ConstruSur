@@ -1,39 +1,27 @@
 import { Motion } from "@/components/ui/Motion";
-import { Hero } from "@/components/sections/Hero";
-import { About } from "@/components/sections/About";
-import { Services } from "@/components/sections/Services";
-import { WhyUs } from "@/components/sections/WhyUs";
-import { Process } from "@/components/sections/Process";
-import { CotizadorSection } from "@/components/cotizador/CotizadorSection";
-import { Projects } from "@/components/sections/Projects";
-import { Testimonials } from "@/components/sections/Testimonials";
-import { Team } from "@/components/sections/Team";
-import { Marquee } from "@/components/ui/Marquee";
-import { Values } from "@/components/sections/Values";
-import { Faq } from "@/components/sections/Faq";
-import { Contact } from "@/components/sections/Contact";
-import { Footer } from "@/components/sections/Footer";
-import { FaqJsonLd } from "@/components/JsonLd";
-import { marquee } from "@/data/home";
+import { V2Hero } from "@/components/v2/Hero";
+import { V2ServiceTabs } from "@/components/v2/ServiceTabs";
+import { V2ProjectsSlider } from "@/components/v2/ProjectsSlider";
+import { V2CoverageMap } from "@/components/v2/CoverageMap";
+import { V2WhyUs } from "@/components/v2/WhyUs";
+import { V2WhoWeBuild } from "@/components/v2/WhoWeBuild";
+import { V2CotizadorSection } from "@/components/v2/cotizador/V2CotizadorSection";
+import { V2Contact } from "@/components/v2/Contact";
+import { V2Footer } from "@/components/v2/Footer";
 
+/** Inicio — VERSIÓN B (rama feat/version-b). */
 export default function Home() {
   return (
     <>
-      <Hero />
-      <About />
-      <Services />
-      <WhyUs />
-      <Process />
-      <CotizadorSection />
-      <Projects />
-      <Testimonials />
-      <Team />
-      <Marquee items={marquee} />
-      <Values />
-      <Faq />
-      <Contact />
-      <Footer />
-      <FaqJsonLd />
+      <V2Hero />
+      <V2ServiceTabs />
+      <V2ProjectsSlider />
+      <V2CoverageMap />
+      <V2WhyUs />
+      <V2WhoWeBuild />
+      <V2CotizadorSection />
+      <V2Contact />
+      <V2Footer />
       <Motion />
     </>
   );

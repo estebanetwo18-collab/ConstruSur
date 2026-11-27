@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Motion } from "@/components/ui/Motion";
-import { Gracias } from "./Gracias";
-import { Footer } from "@/components/sections/Footer";
+import { V2Gracias } from "@/components/v2/Gracias";
+import { V2Footer } from "@/components/v2/Footer";
 
 export const metadata: Metadata = {
   title: "¡Gracias!",
@@ -13,8 +13,8 @@ export const metadata: Metadata = {
 export default function GraciasPage() {
   return (
     <>
-      <Gracias />
-      <Footer />
+      <V2Gracias />
+      <V2Footer />
       <Motion />
     </>
   );
