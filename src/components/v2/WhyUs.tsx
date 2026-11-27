@@ -2,6 +2,10 @@
 
 import { useEffect, useRef, useState } from "react";
 import { v2PorQue } from "@/data/v2";
+import Image from "next/image";
+import { equipo } from "@/data/equipo";
+import { WhatsAppIcon } from "@/components/ui/BrandIcons";
+import { track } from "@/lib/analytics";
 import { Monogram } from "./Brand";
 
 /** Mezcla lineal entre dos colores hex. */
@@ -57,7 +61,7 @@ export function V2WhyUs() {
   return (
     <section id="nosotros" aria-labelledby="v2-why-titulo" className="bg-v2-light text-v2-black">
       <div ref={ref} className="mx-auto grid max-w-[1440px] gap-10 px-5 py-16 sm:px-8 lg:grid-cols-2 lg:gap-16 lg:px-12 lg:py-24">
-        <div className="lg:sticky lg:top-24 lg:h-[calc(100svh-8rem)]">
+        <div className="lg:sticky lg:top-24 lg:self-start">
           <h2 id="v2-why-titulo" className="v2-h text-[2.2rem] sm:text-5xl lg:text-[3.4rem]" data-reveal>
             {v2PorQue.titulo.map((t) => (
               <span key={t} className="block">
@@ -65,8 +69,38 @@ export function V2WhyUs() {
               </span>
             ))}
           </h2>
-          <div className="mx-auto mt-8 w-[62%] max-w-[420px] lg:mx-0 lg:mt-12 lg:w-[72%]" style={{ color: mix("#c9b3a1", "#e0925f", p) }}>
-            <Monogram progress={p} strokeWidth={7} className="w-full" />
+          <div className="relative mt-8 lg:mt-10">
+            {/* Monograma de línea que se dibuja con el scroll, detrás del equipo */}
+            <div aria-hidden className="pointer-events-none absolute -right-6 -top-10 w-[62%] max-w-[380px] opacity-60" style={{ color: mix("#c9b3a1", "#e0925f", p) }}>
+              <Monogram progress={p} strokeWidth={7} className="w-full" />
+            </div>
+            <p className="relative max-w-md text-[0.98rem] leading-relaxed text-v2-muted">
+              Detrás de cada obra hay nombres y apellidos. {equipo.socios.map((s) => s.nombre).join(" y ")} dan la cara en cada proyecto: hable directamente con ellos.
+            </p>
+            <ul className="relative mt-6 grid max-w-xl grid-cols-2 gap-4">
+              {equipo.socios.map((s) => (
+                <li key={s.nombre} className="bg-white shadow-[0_20px_40px_-24px_rgba(18,16,16,.45)]">
+                  <div className="relative aspect-[4/5] overflow-hidden bg-v2-cream">
+                    <Image src={s.foto} alt={`${s.nombre}, ${s.rol} de ConstruSur`} fill sizes="(min-width: 1024px) 280px, 45vw" className="object-cover" />
+                  </div>
+                  <div className="p-4">
+                    <p className="text-lg font-extrabold tracking-[-0.02em]">{s.nombre}</p>
+                    <p className="text-sm text-v2-muted">{s.rol}</p>
+                    <a
+                      href={`https://wa.me/${s.whatsapp}?text=${encodeURIComponent(`Hola ${s.nombre}, me gustaría conversar sobre un proyecto.`)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => track("whatsapp_click", { ubicacion: `socio_${s.nombre.toLowerCase()}` })}
+                      className="v2-btn v2-btn--sm mt-3"
+                    >
+                      <WhatsAppIcon className="size-4" />
+                      <span>Conversemos</span>
+                      <span aria-hidden className="v2-tri" />
+                    </a>
+                  </div>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
 

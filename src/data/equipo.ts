@@ -12,11 +12,15 @@ export const equipo = {
       nombre: "Josué",
       rol: "Socio fundador", // TODO_CONSTRUSUR: rol y apellido
       foto: "/img/equipo/socio-1.webp",
+      /** WhatsApp individual (código de país + número). TODO_CONSTRUSUR: hoy usa el número general. */
+      whatsapp: "50672229812",
     },
     {
       nombre: "Kenneth",
       rol: "Socio fundador", // TODO_CONSTRUSUR: rol y apellido
       foto: "/img/equipo/socio-2.webp",
+      /** WhatsApp individual (código de país + número). TODO_CONSTRUSUR: hoy usa el número general. */
+      whatsapp: "50672229812",
     },
   ],
   /** Fotos de obra que acompañan al equipo (temporales). */
