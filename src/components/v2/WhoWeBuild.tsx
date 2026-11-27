@@ -11,7 +11,7 @@ export function V2WhoWeBuild() {
         <ul className="mt-14 grid grid-cols-2 gap-x-6 gap-y-12 sm:gap-x-10 lg:mt-20 lg:grid-cols-3 lg:gap-y-16">
           {v2ParaQuien.items.map((it, i) => (
             <li key={it.id} className="text-center" data-reveal style={{ "--i": i % 3 } as React.CSSProperties}>
-              <Illustration id={it.id} className="mx-auto w-full max-w-[260px] text-v2-brown-soft [&_path:nth-child(odd)]:text-v2-orange" />
+              <Illustration id={it.id} className="mx-auto w-full max-w-[300px]" />
               <h3 className="mt-5 text-[1.05rem] font-bold">{it.titulo}</h3>
               <p className="mt-1 text-sm text-white/60">{it.texto}</p>
             </li>
