@@ -34,13 +34,13 @@ export function WhyUs() {
       <div className="relative mx-auto max-w-[1320px] px-5 sm:px-8 lg:px-12">
         <SectionTitle id="porque-titulo" align="center" eyebrow={porQue.eyebrow} titulo={porQue.titulo} intro={porQue.intro} className="max-w-3xl" />
 
-        <div className="mt-14 grid gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-12 lg:grid-rows-[260px_260px]">
+        <div className="mt-14 grid gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-12 lg:grid-rows-[minmax(260px,auto)_minmax(300px,auto)]">
           {/* A: foto alta con tarjeta flotante */}
           <div className="relative sm:col-span-2 lg:col-span-5 lg:row-span-2" data-reveal="scale">
             <div className="zoom-img relative aspect-[4/5] overflow-hidden rounded-[20px] sm:aspect-[16/10] lg:aspect-auto lg:h-full">
               <Image src="/img/obra/andamios.webp" alt="Equipo trabajando en la estructura de una obra" fill sizes="(min-width: 1024px) 40vw, 100vw" className="object-cover" />
             </div>
-            <div className="absolute bottom-4 left-4 right-4 sm:right-auto sm:max-w-sm lg:-right-12 lg:bottom-8 lg:left-8">
+            <div className="absolute bottom-4 left-4 right-4 sm:right-auto sm:max-w-sm lg:bottom-6 lg:left-6 lg:right-6 lg:max-w-[360px]">
               <Feature id="equipo" floating />
             </div>
           </div>
@@ -69,7 +69,7 @@ export function WhyUs() {
             <div className="zoom-img relative aspect-[4/3] overflow-hidden rounded-[20px] lg:aspect-auto lg:h-full">
               <Image src="/img/obra/excavacion.webp" alt="Movimiento de tierras al inicio de una obra" fill sizes="(min-width: 1024px) 32vw, 100vw" className="object-cover" />
             </div>
-            <div className="mt-4 lg:absolute lg:-bottom-6 lg:-left-6 lg:mt-0 lg:w-[86%]">
+            <div className="mt-4 lg:absolute lg:inset-x-4 lg:bottom-4 lg:mt-0">
               <Feature id="transparencia" floating />
             </div>
           </div>
