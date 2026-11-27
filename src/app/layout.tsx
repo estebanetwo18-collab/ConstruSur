@@ -1,17 +1,17 @@
 import type { Metadata, Viewport } from "next";
-import { Fraunces, Inter } from "next/font/google";
+import { Archivo, Inter } from "next/font/google";
 import "./globals.css";
 import { site, SITE_URL } from "@/data/site";
-import { Header } from "@/components/sections/Header";
-import { Floating } from "@/components/ui/Floating";
+import { V2Header } from "@/components/v2/Header";
+import { V2MobileBar } from "@/components/v2/MobileBar";
 import { Analytics } from "@/components/Analytics";
 import { BusinessJsonLd } from "@/components/JsonLd";
 
-const fraunces = Fraunces({
+// Versión B: grotesca compacta para titulares (sin serif).
+const archivo = Archivo({
   subsets: ["latin"],
-  weight: ["500", "600"],
-  style: ["normal", "italic"],
-  variable: "--font-fraunces",
+  weight: ["600", "700", "800"],
+  variable: "--font-archivo",
   display: "swap",
 });
 
@@ -20,7 +20,7 @@ const inter = Inter({
   weight: ["400", "500", "600", "700"],
   variable: "--font-inter",
   display: "swap",
-  // Solo se precarga Fraunces (titular del hero); Inter usa fallback ajustado mientras carga.
+  // Solo se precarga Archivo (titular del hero); Inter usa fallback ajustado mientras carga.
   preload: false,
 });
 
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#1b1812",
+  themeColor: "#121010",
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
@@ -55,21 +55,21 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="es-CR" className={`${fraunces.variable} ${inter.variable}`} suppressHydrationWarning>
+    <html lang="es-CR" className={`${archivo.variable} ${inter.variable}`} suppressHydrationWarning>
       <head>
         {/* Habilita las animaciones de reveal solo si hay JS (sin JS todo es visible). */}
         <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
       </head>
-      <body className="min-h-dvh pb-[76px] md:pb-0">
+      <body className="min-h-dvh bg-v2-black pb-[68px] text-white md:pb-0">
         <a
           href="#contenido"
-          className="fixed left-3 top-3 z-[100] -translate-y-24 rounded-full bg-ink px-5 py-3 font-semibold text-cream transition-transform focus:translate-y-0"
+          className="fixed left-3 top-3 z-[100] -translate-y-24 bg-v2-orange px-5 py-3 font-bold text-v2-black transition-transform focus:translate-y-0"
         >
           Saltar al contenido
         </a>
-        <Header />
+        <V2Header />
         <main id="contenido">{children}</main>
-        <Floating />
+        <V2MobileBar />
         <BusinessJsonLd />
         <Analytics />
       </body>

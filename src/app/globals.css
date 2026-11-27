@@ -335,3 +335,227 @@ dialog[open] {
     transform: none !important;
   }
 }
+
+/* ==========================================================================
+   VERSIÓN B — tokens y componentes (prefijo v2)
+   Paleta: negro reemplaza al navy de la referencia, marrón al azul medio,
+   naranja ConstruSur al azul brillante. Contraste verificado:
+   · naranja #e0925f sobre negro #121010 → 7,6:1 (AA)
+   · texto #121010 sobre naranja → 7,6:1 (AA)  ← por eso los botones llevan texto negro
+   · blanco sobre naranja → 2,5:1 (NO pasa AA; no se usa)
+   · texto pequeño "naranja" sobre claro usa --v2-orange-ink #9a4e2e (5,2:1)
+   ========================================================================== */
+:root {
+  --v2-black: #121010;
+  --v2-ink: #1b1812;
+  --v2-brown: #4a3426; /* TODO_CONSTRUSUR: confirmar marrón exacto */
+  --v2-brown-line: #6b4a32;
+  --v2-brown-card: #2a1f18;
+  --v2-brown-soft: #c9b3a1;
+  --v2-orange: #e0925f;
+  --v2-orange-hover: #c97a47;
+  --v2-orange-ink: #9a4e2e;
+  --v2-cream: #f4f0e8;
+  --v2-light: #f7f5f1;
+  --v2-white: #ffffff;
+  --v2-muted: #5c534b;
+  /* En la versión B los componentes compartidos usan la grotesca. */
+  --font-fraunces: var(--font-archivo);
+}
+
+@theme inline {
+  --color-v2-black: var(--v2-black);
+  --color-v2-ink: var(--v2-ink);
+  --color-v2-brown: var(--v2-brown);
+  --color-v2-brown-line: var(--v2-brown-line);
+  --color-v2-brown-card: var(--v2-brown-card);
+  --color-v2-brown-soft: var(--v2-brown-soft);
+  --color-v2-orange: var(--v2-orange);
+  --color-v2-orange-hover: var(--v2-orange-hover);
+  --color-v2-orange-ink: var(--v2-orange-ink);
+  --color-v2-cream: var(--v2-cream);
+  --color-v2-light: var(--v2-light);
+  --color-v2-white: var(--v2-white);
+  --color-v2-muted: var(--v2-muted);
+  --font-v2: var(--font-archivo), "Arial Narrow", Arial, sans-serif;
+}
+
+.v2-h {
+  font-family: var(--font-v2);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 0.98;
+  text-wrap: balance;
+}
+
+/* Botón con corte diagonal (paralelogramo) */
+.v2-btn {
+  --cut: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.8rem calc(1.35rem + var(--cut)) 0.8rem 1.35rem;
+  background: var(--v2-orange);
+  color: var(--v2-black);
+  font-weight: 700;
+  font-size: 0.92rem;
+  letter-spacing: -0.005em;
+  clip-path: polygon(0 0, 100% 0, calc(100% - var(--cut)) 100%, 0 100%);
+  transition:
+    background-color 0.25s var(--ease),
+    padding 0.35s var(--ease);
+}
+.v2-btn:hover {
+  background: var(--v2-orange-hover);
+  padding-right: calc(1.7rem + var(--cut));
+}
+.v2-btn--sm {
+  --cut: 10px;
+  padding: 0.55rem calc(0.95rem + var(--cut)) 0.55rem 0.95rem;
+  font-size: 0.8rem;
+}
+.v2-btn--outline {
+  background: transparent;
+  color: currentColor;
+  clip-path: none;
+  box-shadow: inset 0 0 0 1px currentColor;
+}
+.v2-btn--outline:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+.v2-tri {
+  width: 0;
+  height: 0;
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  border-left: 6px solid currentColor;
+  transition: transform 0.3s var(--ease);
+}
+.v2-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 700;
+  font-size: 0.92rem;
+  border-bottom: 1.5px solid transparent;
+  padding-bottom: 2px;
+}
+.v2-link:hover {
+  border-color: currentColor;
+}
+.v2-link:hover .v2-tri,
+.v2-btn:hover .v2-tri {
+  transform: translateX(3px);
+}
+
+/* Líneas que se dibujan: usar pathLength="1" en cada trazo */
+.v2-draw :is(path, line, polyline, rect, circle, polygon) {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset 1.8s var(--ease);
+  transition-delay: calc(var(--d, 0) * 1ms);
+}
+[data-in] .v2-draw :is(path, line, polyline, rect, circle, polygon),
+.v2-draw[data-in] :is(path, line, polyline, rect, circle, polygon) {
+  stroke-dashoffset: 0;
+}
+
+/* Hero: foto → plano (ciclo) */
+@keyframes v2-kenburns {
+  from {
+    transform: scale(1.04);
+  }
+  to {
+    transform: scale(1.16) translate3d(-1.5%, -1%, 0);
+  }
+}
+@keyframes v2-plano {
+  0%,
+  42% {
+    opacity: 0;
+  }
+  55%,
+  88% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.v2-kenburns {
+  animation: v2-kenburns 16s var(--ease) infinite alternate;
+}
+.v2-plano {
+  animation: v2-plano 14s ease-in-out infinite;
+}
+
+@keyframes v2-progress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+.v2-progress {
+  transform-origin: left;
+  animation: v2-progress var(--dur, 7s) linear forwards;
+}
+.v2-paused .v2-progress {
+  animation-play-state: paused;
+}
+
+@keyframes v2-pin {
+  from {
+    opacity: 0;
+    transform: translateY(-14px) scale(0.6);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .v2-kenburns,
+  .v2-plano {
+    animation: none;
+  }
+  .v2-draw :is(path, line, polyline, rect, circle, polygon) {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Versión B: base oscura */
+body {
+  background: var(--v2-black);
+  color: var(--v2-white);
+}
+:focus-visible {
+  outline-color: var(--v2-orange);
+}
+
+/* Slider del cotizador en la versión B */
+.v2-range::-webkit-slider-runnable-track {
+  border-radius: 0;
+  background: linear-gradient(to right, var(--v2-orange) 0 var(--pct, 50%), var(--v2-brown) var(--pct, 50%) 100%);
+}
+.v2-range::-moz-range-track {
+  border-radius: 0;
+  background: var(--v2-brown);
+}
+.v2-range::-moz-range-progress {
+  border-radius: 0;
+  background: var(--v2-orange);
+}
+.v2-range::-webkit-slider-thumb {
+  border-radius: 0;
+  background: var(--v2-orange);
+  border: 4px solid var(--v2-black);
+  box-shadow: 0 0 0 1px var(--v2-orange);
+}
+.v2-range::-moz-range-thumb {
+  border-radius: 0;
+  background: var(--v2-orange);
+  border: 4px solid var(--v2-black);
+}
